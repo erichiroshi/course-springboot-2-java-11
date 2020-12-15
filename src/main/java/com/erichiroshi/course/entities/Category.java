@@ -19,8 +19,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_category")
@@ -30,13 +28,15 @@ public class Category implements Serializable {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter
 	private Long id;
-
+	
+	@Getter @Setter
 	private String name;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "categories")
-	@Setter
+	@Getter
 	private Set<Product> products = new HashSet<>();
 
 	public Category(Long id, String name) {

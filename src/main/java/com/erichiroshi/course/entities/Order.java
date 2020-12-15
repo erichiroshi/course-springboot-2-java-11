@@ -2,6 +2,8 @@ package com.erichiroshi.course.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.erichiroshi.course.entities.enums.OrderStatus;
@@ -21,8 +24,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @NoArgsConstructor
-@Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "tb_order")
@@ -32,16 +33,23 @@ public class Order implements Serializable {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter
 	private Long id;
 
 	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
+	@Getter @Setter
 	private Instant moment;
 
 	private Integer orderStatus;
 
 	@ManyToOne
 	@JoinColumn(name = "client_id")
+	@Getter @Setter
 	private User client;
+
+	@OneToMany(mappedBy = "id.order")
+	@Getter 
+	private Set<OrderItem> items = new HashSet<>();
 
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		this.id = id;
