@@ -25,11 +25,8 @@ public class OrderItem implements Serializable {
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
 
-	@Getter @Setter
-	private Integer quantity;
-	
-	@Getter @Setter
-	private Double price;
+	@Getter @Setter	private Integer quantity;
+	@Getter @Setter	private Double price;
 
 	public OrderItem(Order order, Product product, Integer quantity, Double price) {
 		id.setOrder(order);

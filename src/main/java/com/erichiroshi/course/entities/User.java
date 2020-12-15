@@ -26,24 +26,17 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	private Long id;
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter	private Long id;
 
-	@Getter @Setter
-	private String name;
-	@Getter @Setter
-	private String email;
-	@Getter @Setter
-	private String phone;
-	@Getter @Setter
-	private String password;
+	@Getter @Setter	private String name;
+	@Getter @Setter	private String email;
+	@Getter @Setter	private String phone;
+	@Getter @Setter	private String password;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
-	@Getter
-	private List<Order> orders = new ArrayList<>();
+	@Getter	private List<Order> orders = new ArrayList<>();
 
 	public User(Long id, String name, String email, String phone, String password) {
 		this.id = id;

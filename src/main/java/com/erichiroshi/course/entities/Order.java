@@ -31,25 +31,20 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	private Long id;
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter	private Long id;
 
 	@JsonFormat(shape = Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
-	@Getter @Setter
-	private Instant moment;
+	@Getter @Setter	private Instant moment;
 
 	private Integer orderStatus;
 
 	@ManyToOne
 	@JoinColumn(name = "client_id")
-	@Getter @Setter
-	private User client;
+	@Getter @Setter	private User client;
 
 	@OneToMany(mappedBy = "id.order")
-	@Getter 
-	private Set<OrderItem> items = new HashSet<>();
+	@Getter private Set<OrderItem> items = new HashSet<>();
 
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		this.id = id;

@@ -26,18 +26,14 @@ public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	private Long id;
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter	private Long id;
 	
-	@Getter @Setter
-	private String name;
+	@Getter @Setter	private String name;
 
 	@JsonIgnore
 	@ManyToMany(mappedBy = "categories")
-	@Getter
-	private Set<Product> products = new HashSet<>();
+	@Getter	private Set<Product> products = new HashSet<>();
 
 	public Category(Long id, String name) {
 		this.id = id;

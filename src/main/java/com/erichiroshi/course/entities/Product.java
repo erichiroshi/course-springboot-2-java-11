@@ -26,24 +26,17 @@ public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Getter
-	private Long id;
+	@Id	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Getter	private Long id;
 
-	@Getter @Setter
-	private String name;
-	@Getter @Setter
-	private String description;
-	@Getter @Setter
-	private Double price;
-	@Getter @Setter
-	private String imgUrl;
+	@Getter @Setter	private String name;
+	@Getter @Setter	private String description;
+	@Getter @Setter	private Double price;
+	@Getter @Setter	private String imgUrl;
 
 	@ManyToMany
 	@JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-	@Getter
-	Set<Category> categories = new HashSet<>();
+	@Getter	Set<Category> categories = new HashSet<>();
 
 	public Product(Long id, String name, String description, Double price, String imgUrl) {
 		this.id = id;
