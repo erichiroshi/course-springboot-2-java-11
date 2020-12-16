@@ -7,29 +7,31 @@ import org.springframework.stereotype.Service;
 
 import com.erichiroshi.course.entities.User;
 import com.erichiroshi.course.repositories.UserRepository;
+import com.erichiroshi.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
 
 	@Autowired
 	private UserRepository repository;
-	
-	public List<User> findAll(){
+
+	public List<User> findAll() {
 		return repository.findAll();
 	}
-	
+
 	public User findById(Long id) {
-		return repository.findById(id).get();
+		User obj = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+		return obj;
 	}
-	
+
 	public User insert(User obj) {
 		return repository.save(obj);
 	}
-	
+
 	public void deleteById(Long id) {
 		repository.deleteById(id);
 	}
-	
+
 	public User update(Long id, User obj) {
 		User entity = repository.getOne(id);
 		updateData(entity, obj);
