@@ -10,11 +10,10 @@ import com.erichiroshi.course.entities.User;
 @RestController
 @RequestMapping("/users")
 public class UserResource {
-
-	User user = new User(1L, "Pedro", "pedro@gmail.com", "999384499", "123456789");
 	
 	@GetMapping
-	public ResponseEntity<User> listAll(){
+	public ResponseEntity<User> findAll(){
+		User user = new User(1L, "Pedro", "pedro@gmail.com", "999384499", "123456789");
 		return ResponseEntity.ok().body(user);
 	}
 	
